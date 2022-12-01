@@ -1,2 +1,2 @@
-# db_project
+# Database_project
  INFSCI_2710 project
