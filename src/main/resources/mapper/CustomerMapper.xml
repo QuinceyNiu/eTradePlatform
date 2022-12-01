@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace属性：用于指定当前的映射文件和哪个接口进行映射，需要指定接口的文件路径，需要标注包的完整路径接口-->
+<mapper namespace="com.comz.store.mapper.CustomerMapper">
+
+    <resultMap id="CustomerEntityMap" type="com.comz.store.entity.Customer">
+        <id column="uid" property="uid"></id>
+        <result column="is_delete" property="isDelete"></result>
+        <result column="created_user" property="createdUser"></result>
+        <result column="created_time" property="createdTime"></result>
+        <result column="modified_user" property="modifiedUser"></result>
+        <result column="modified_time" property="modifiedTime"></result>
+    </resultMap>
+
+    <insert id="insert" useGeneratedKeys="true" keyProperty="uid">
+        insert into db_project.t_customer (
+            `uid`,`username`, `password`,`salt`,
+            `phone`,`email`,`gender`, `avatar`, `is_delete`,
+            `created_user`,`created_time`,`modified_user`,`modified_time`
+        )
+        values (
+                   #{uid} ,#{username} ,#{password},#{salt} ,#{phone},#{email},
+                   #{gender}, #{avatar}, #{isDelete},
+                   #{createdUser},#{createdTime},#{modifiedUser},#{modifiedTime}
+               )
+    </insert>
+
+    <select id="findByUsername" resultMap="CustomerEntityMap">
+        select * from db_project.t_customer where username = #{username}
+    </select>
+
+    <update id="updatePasswordByUid">
+        update db_project.t_customer set
+            password = #{password}, modified_user = #{modifiedUser}, modified_time = #{modifiedTime}
+        where uid = #{uid}
+    </update>
+
+    <select id="findByUid" resultMap="CustomerEntityMap">
+        select * from db_project.t_customer where uid = #{uid}
+    </select>
+
+    <update id="updateByUid">
+        update db_project.t_customer set
+        phone = #{phone},
+        <if test="email != null">email = #{email},</if>
+        modified_user = #{modifiedUser}, modified_time = #{modifiedTime}
+        where uid = #{uid}
+    </update>
+
+    <update id="updateAvatarByUid">
+        update db_project.t_customer
+        set avatar = #{avatar},
+            modified_user = #{modifiedUser},
+            modified_time = #{modifiedTime}
+        where
+            uid = #{uid}
+    </update>
+
+
+
+</mapper>
