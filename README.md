@@ -1,3 +1,3 @@
-# Database_project
- INFSCI_2710 project         
- GO GO GO Team
+#Developed by GO GO GO Team
+
+This is a grocery e-commerce platform to provide Asian style’s groceries, and it mainly targets Asian students who study abroad. This system solves two problems for customers. First, it reduces time cost for students. As international students, they may spend more time on studying and have less time to go shopping. They could simply login, and order groceries online. Second, it resolves the transportation issue. For instance, it is hard to find public transportation besides metro area in America. Students may not have a car to go shopping, and this system could deliver orders to their home easily.
